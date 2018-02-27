@@ -26,7 +26,7 @@ public class JPAConfiguration {
 		
 		DriverManagerDataSource dataSource = new DriverManagerDataSource();
 		dataSource.setUsername("root");
-		dataSource.setPassword("");
+		dataSource.setPassword("root");
 		dataSource.setUrl("jdbc:mysql://localhost:3306/casadocodigo");
 		dataSource.setDriverClassName("com.mysql.jdbc.Driver");
 		
@@ -38,6 +38,7 @@ public class JPAConfiguration {
 		LocalContainerEntityManagerFactoryBean factoryBean = new LocalContainerEntityManagerFactoryBean();
 		factoryBean.setJpaVendorAdapter(vendorAdapter);
 		factoryBean.setDataSource(dataSource);
+		factoryBean.setJpaProperties(props);
 		factoryBean.setPackagesToScan("org.casadocodigo.store.models");
 		
 		return factoryBean;
