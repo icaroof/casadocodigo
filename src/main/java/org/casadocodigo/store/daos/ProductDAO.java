@@ -1,5 +1,7 @@
 package org.casadocodigo.store.daos;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -18,4 +20,7 @@ public class ProductDAO {
 		manager.persist(product);
 	}
 
+	public List<Product> list() {
+		return manager.createQuery("select p from Product p", Product.class).getResultList();
+	}
 }
