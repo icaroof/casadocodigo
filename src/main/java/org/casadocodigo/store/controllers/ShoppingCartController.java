@@ -42,4 +42,10 @@ public class ShoppingCartController {
 	public ModelAndView items() {
 		return new ModelAndView("/cart/items");
 	}
+	
+	@RequestMapping("/remove")
+	public ModelAndView remove(Integer productId, PriceType priceType) {
+		cart.remove(productId, priceType);
+		return new ModelAndView("redirect:/cart");
+	}
 }

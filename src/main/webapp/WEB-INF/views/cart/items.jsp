@@ -114,7 +114,7 @@
 			          </td>
 			          <td class="numeric-cell">${shoppingCart.getTotal(item)}</td>
 			          <td class="remove-item">
-			          	<form action="" method="post">
+			          	<form action="${s:mvcUrl('SCC#remove').arg(0, item.product.id).arg(1, item.priceType).build() }" method="post">
 			          		<input type="image" src="${contextPath }resources/imagens/excluir.png" alt="Delete" title="Delete" />
 			          	</form>
 			          </td>
@@ -124,7 +124,9 @@
 			      <tfoot>
 			        <tr>
 			          <td colspan="3">
-			          	<input type="submit" class="checkout" name="checkout" value="Complete purchase" />
+			          	<form action="${s:mvcUrl('PC#finish').build()}" method="post">
+			          		<input type="submit" class="checkout" name="checkout" value="Complete purchase" />
+			          	</form>
 			          </td>
 			          <td class="numeric-cell">${shoppingCart.total}</td><td></td>
 			        </tr>
@@ -140,7 +142,7 @@
 		      </li>          
 		  </ul>
 		  
-		  <h2><a href="http://www.casadocodigo.com.br">Veja todos os livros que publicamos!</a></h2>
+		  <h2><a href="products">Veja todos os livros que publicamos!</a></h2>
 		</section> 
 
 		
