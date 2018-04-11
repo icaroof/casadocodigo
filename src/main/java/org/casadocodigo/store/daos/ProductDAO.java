@@ -12,15 +12,20 @@ import org.springframework.transaction.annotation.Transactional;
 @Repository
 @Transactional
 public class ProductDAO {
-	
+
 	@PersistenceContext
 	private EntityManager manager;
-	
+
 	public void save(Product product) {
 		manager.persist(product);
 	}
 
 	public List<Product> list() {
 		return manager.createQuery("select p from Product p", Product.class).getResultList();
+	}
+
+	public Product find(Integer id) {
+		return manager.createQuery("select p from Product p join fetch p.prices prices where p.id = :id", Product.class)
+				.setParameter("id", id).getSingleResult();
 	}
 }
