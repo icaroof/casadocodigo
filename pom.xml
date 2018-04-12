@@ -118,7 +118,7 @@
 			<version>4.2.0.Final</version>
 		</dependency>
 
-		<!-- dependencias para converter objetos para json -->
+		<!-- dependencias para converter objetos para json e facilitar na integração rest -->
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-core</artifactId>

@@ -5,46 +5,77 @@
 <%@taglib uri="http://www.springframework.org/tags" prefix="s"%>
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="UTF-8">
-<title>Livros de Java, Android, iPhone, Ruby, PHP e muito mais -
-	Casa do Código</title>
-</head>
-<body>
-	<form:form action="${s:mvcUrl('PC#save').build()}" method="post"
-		commandName="product" enctype="multipart/form-data">
-		<div>
-			<label>Title</label>
-			<form:input path="title" />
-			<form:errors path="title" />
-		</div>
-		<div>
-			<label>Description</label>
-			<form:textarea rows="10" cols="20" path="description" />
-			<form:errors path="description" />
-		</div>
-		<div>
-			<label>Pages</label>
-			<form:input path="pages" />
-			<form:errors path="pages" />
-		</div>
-		<div>
-			<label>Publish Date</label>
-			<form:input path="publishDate" />
-			<form:errors path="publishDate" />
-		</div>
-		<c:forEach items="${types}" var="priceType" varStatus="status">
-			<div>
-				<label>${priceType}</label>
-				<form:input path="prices[${status.index}].value" />
-				<form:hidden path="prices[${status.index}].type" value="${priceType}" />
+	<head>
+	<meta charset="UTF-8">
+		<title>Livros de Java, Android, iPhone, Ruby, PHP e muito mais - Casa do Código</title>
+		
+		<c:url value="/resources/css" var="cssPath" />
+		<link rel="stylesheet" href="${cssPath}/bootstrap.min.css" />
+		<link rel="stylesheet" href="${cssPath}/bootstrap-theme.min.css" />
+		
+		<style type="text/css">
+			body{
+				padding-bottom: 60px;
+			}
+		</style>
+	</head>
+	<body>
+		<nav class="navbar navbar-inverse">
+			<div class="container">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="${s:mvcUrl('HC#index').build()}">Home</a>
+				</div>
+				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+					<ul class="nav navbar-nav">
+						<li><a href="${s:mvcUrl('PC#list').build()}">Lista de Produtos</a></li>
+						<li><a href="${s:mvcUrl('PC#form').build()}">Cadastro de Produtos</a></li>
+					</ul>
+				</div><!-- /.navbar-collapse -->
 			</div>
-		</c:forEach>
-		<div>
-			<label>Summary</label>
-			<input name="summary" type="file" />
+		</nav>
+		<div class="container">
+			<h1>New Product</h1>
+			<form:form action="${s:mvcUrl('PC#save').build()}" method="post"
+				commandName="product" enctype="multipart/form-data">
+				<div class="form-group">
+					<label>Title</label>
+					<form:input path="title" cssClass="form-control" />
+					<form:errors path="title" />
+				</div>
+				<div class="form-group">
+					<label>Description</label>
+					<form:textarea path="description" cssClass="form-control" />
+					<form:errors path="description" />
+				</div>
+				<div class="form-group">
+					<label>Pages</label>
+					<form:input path="pages" cssClass="form-control" />
+					<form:errors path="pages" />
+				</div>
+				<div class="form-group">
+					<label>Publish Date</label>
+					<form:input path="publishDate" cssClass="form-control" />
+					<form:errors path="publishDate" />
+				</div>
+				<c:forEach items="${types}" var="priceType" varStatus="status">
+					<div class="form-group">
+						<label>${priceType}</label>
+						<form:input path="prices[${status.index}].value" cssClass="form-control" />
+						<form:hidden path="prices[${status.index}].type" value="${priceType}" />
+					</div>
+				</c:forEach>
+				<div class="form-group">
+					<label>Summary</label>
+					<input name="summary" type="file" class="form-control" />
+				</div>
+				<button type="submit" class="btn btn-primary">Register</button>
+			</form:form>
 		</div>
-		<button type="submit">Register</button>
-	</form:form>
-</body>
+	</body>
 </html>
